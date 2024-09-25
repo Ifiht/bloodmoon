@@ -18,8 +18,8 @@ public class PeriodicNightCheck implements Runnable, Listener
 
     private static Map<World, PeriodicNightCheck> nightChecks;
 
-    private World world;
-    private BloodmoonManager actuator;
+    private final World world;
+    private final BloodmoonManager actuator;
 
     public PeriodicNightCheck(World world, BloodmoonManager actuator) {
         ConfigReader configReader = Bloodmoon.GetInstance().getConfigReader(world);

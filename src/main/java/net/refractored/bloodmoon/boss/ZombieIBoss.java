@@ -43,7 +43,7 @@ public final class ZombieIBoss extends Boss {
 
     public void Start() {
         host.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, Integer.MAX_VALUE, reader.GetZombieBossHealth()));
-        host.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, Integer.MAX_VALUE, reader.GetZombieBossDamage()));
+        host.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, Integer.MAX_VALUE, reader.GetZombieBossDamage()));
         host.setCustomName(locales.GetLocaleString("ZombieBossName"));
         host.setCustomNameVisible(true);
         zombieHost.setAdult();
@@ -58,7 +58,7 @@ public final class ZombieIBoss extends Boss {
                 world.spawnParticle(Particle.PORTAL, host.getLocation(), 60);
             }
         }, 0L, 3L));
-        world.spawnParticle(Particle.EXPLOSION_HUGE, host.getLocation(), 60);
+        world.spawnParticle(Particle.EXPLOSION_EMITTER, host.getLocation(), 60);
         ParseSpells();
     }
 
@@ -96,7 +96,7 @@ public final class ZombieIBoss extends Boss {
                 scheduler.scheduleSyncDelayedTask(Bloodmoon.GetInstance(), new Runnable() {
                     public void run() {
                         world.strikeLightningEffect(host.getLocation());
-                        world.spawnParticle(Particle.EXPLOSION_HUGE, host.getLocation(), 20);
+                        world.spawnParticle(Particle.EXPLOSION_EMITTER, host.getLocation(), 20);
                     }
                 }, (long) (delayBase * i));
             }

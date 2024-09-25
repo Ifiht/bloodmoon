@@ -113,9 +113,9 @@ public class ConfigReader implements Closeable
     public static final String HORDES_ENABLED = "HordesEnabled";
     public static final boolean HORDES_ENABLED_DEFAULT = true;
 
-    private File configFile;
+    private final File configFile;
     private Map <String, Object> cache;
-    private World world;
+    private final World world;
 
 
     public ConfigReader (File file, World world)

@@ -199,12 +199,12 @@ public abstract class Boss implements IBoss, Listener {
     }
 
     protected void Lightning(final int range) {
-        world.spawnParticle(Particle.EXPLOSION_HUGE, host.getLocation(), 100);
+        world.spawnParticle(Particle.EXPLOSION_EMITTER, host.getLocation(), 100);
         world.playSound(host.getLocation(), Sound.ENTITY_TNT_PRIMED, 1.0F, 1.0F);
         host.setAI(false);
         scheduler.scheduleSyncDelayedTask(Bloodmoon.GetInstance(), new Runnable() {
             public void run() {
-                world.spawnParticle(Particle.EXPLOSION_HUGE, host.getLocation(), 100);
+                world.spawnParticle(Particle.EXPLOSION_EMITTER, host.getLocation(), 100);
                 world.playSound(host.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 1.0F, 1.0F);
                 LivingEntity[] entities = GetNearbyEntities(range);
                 int entityCount = entities.length;
@@ -241,12 +241,12 @@ public abstract class Boss implements IBoss, Listener {
     }
 
     protected void Blind(final int range, final float duration) {
-        world.spawnParticle(Particle.CRIT_MAGIC, host.getLocation(), 100);
+        world.spawnParticle(Particle.CRIT, host.getLocation(), 100);
         world.playSound(host.getLocation(), Sound.ENTITY_ENDERMAN_STARE, 1.0F, 1.0F);
         host.setAI(false);
         scheduler.scheduleSyncDelayedTask(Bloodmoon.GetInstance(), new Runnable() {
             public void run() {
-                world.spawnParticle(Particle.CRIT_MAGIC, host.getLocation(), 100);
+                world.spawnParticle(Particle.CRIT, host.getLocation(), 100);
                 world.playSound(host.getLocation(), Sound.BLOCK_ANVIL_PLACE, 1.0F, 1.0F);
                 LivingEntity[] var1 = GetNearbyEntities(range);
                 int var2 = var1.length;
@@ -267,7 +267,7 @@ public abstract class Boss implements IBoss, Listener {
         host.setAI(false);
         scheduler.scheduleSyncDelayedTask(Bloodmoon.GetInstance(), new Runnable() {
             public void run() {
-                world.spawnParticle(Particle.FIREWORKS_SPARK, host.getLocation(), 100);
+                world.spawnParticle(Particle.FIREWORK, host.getLocation(), 100);
                 world.playSound(host.getLocation(), Sound.ENTITY_HORSE_ANGRY, 1.0F, 1.0F);
 
                 host.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20 * duration, amplifier));
@@ -284,7 +284,7 @@ public abstract class Boss implements IBoss, Listener {
         Random random = new Random();
         scheduler.scheduleSyncDelayedTask(Bloodmoon.GetInstance(), new Runnable() {
             public void run() {
-                world.spawnParticle(Particle.EXPLOSION_NORMAL, host.getLocation(), 100);
+                world.spawnParticle(Particle.EXPLOSION_EMITTER, host.getLocation(), 100);
                 world.playSound(host.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1.0F, 1.0F);
                 LivingEntity[] livingEntities = GetNearbyEntities(range);
                 int len = livingEntities.length;
@@ -305,7 +305,7 @@ public abstract class Boss implements IBoss, Listener {
     }
 
     protected void Underlings(final int range, final int amount) {
-        world.spawnParticle(Particle.WATER_BUBBLE, host.getLocation(), 100);
+        world.spawnParticle(Particle.BUBBLE, host.getLocation(), 100);
         world.playSound(host.getLocation(), Sound.BLOCK_WATER_AMBIENT, 1.0F, 1.0F);
         final Random rnd = new Random();
         final BloodmoonManager actuator = BloodmoonManager.GetActuator(world);

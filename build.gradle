@@ -6,11 +6,12 @@
  */
 plugins {
     id "com.github.johnrengelman.shadow" version "7.1.2"
+    id "xyz.jpenilla.run-paper" version "2.3.1"
     id "java"
 }
 
-sourceCompatibility = 17
-targetCompatibility = 17
+sourceCompatibility = JavaVersion.VERSION_21
+targetCompatibility = JavaVersion.VERSION_21
 
 repositories {
     mavenCentral()
@@ -27,7 +28,7 @@ repositories {
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion = JavaLanguageVersion.of(21)
     }
 }
 
@@ -42,10 +43,11 @@ dependencies {
     //implementation("io.github.revxrsal:lamp.bukkit:${lamp_version}")
 
     implementation 'org.apache.commons:commons-lang3:3.14.0'
-    compileOnly 'org.spigotmc:spigot-api:1.20.4-R0.1-SNAPSHOT'
-    compileOnly 'com.sk89q.worldguard:worldguard-bukkit:7.0.0'
+    compileOnly 'org.spigotmc:spigot-api:1.21.1-R0.1-SNAPSHOT'
+    compileOnly 'com.sk89q.worldguard:worldguard-bukkit:7.0.12'
     compileOnly 'me.clip:placeholderapi:2.11.5'
-    implementation 'org.yaml:snakeyaml:1.23'
+    compileOnly 'com.willfp:eco:6.74.2'
+    implementation 'org.yaml:snakeyaml:2.3'
     implementation 'org.jetbrains:annotations:18.0.0'
     compileOnly("net.kyori:adventure-platform-bukkit:4.1.2")
 }
@@ -65,9 +67,12 @@ compileJava {
 }
 
 
-task runSpigot(type: Exec) {
-    standardInput = System.in
-
-    workingDir 'exes/server'
-    commandLine 'cmd', '/c', 'java', '-jar', file('exes/paper.jar'), 'nogui'
+runServer {
+    // Configure the Minecraft version for our task.
+    // This is the only required configuration besides applying the plugin.
+    // Your plugin's jar (or shadowJar if present) will be used automatically.
+    minecraftVersion("1.21.1")
+    downloadPlugins {
+        url("https://polymart.org/download/773/recent/JSpprMspkuyecf5y1wQ2Jn8OoLQSQ_IW")
+    }
 }
