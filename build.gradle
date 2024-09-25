@@ -14,10 +14,9 @@ targetCompatibility = 17
 
 repositories {
     mavenCentral()
-
     maven { url = "https://jitpack.io/" }
-
     // Spigot
+    maven { url = 'https://repo.codemc.io/repository/maven-public/' }
     maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
     maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
     maven { url = 'https://oss.sonatype.org/content/repositories/central' }
@@ -34,13 +33,13 @@ java {
 
 dependencies {
 
-    def lamp_version = "3.1.8"
+    def lamp_version = "3.2.1"
 
     // Required for all platforms
-    implementation("com.github.Revxrsal.Lamp:common:${lamp_version}")
+    implementation("io.github.revxrsal:lamp:${lamp_version}")
     compileOnly("com.willfp:eco:6.69.1")
     // The Bukkit API for Lamp
-    implementation("com.github.Revxrsal.Lamp:bukkit:${lamp_version}")
+    //implementation("io.github.revxrsal:lamp.bukkit:${lamp_version}")
 
     implementation 'org.apache.commons:commons-lang3:3.14.0'
     compileOnly 'org.spigotmc:spigot-api:1.20.4-R0.1-SNAPSHOT'
@@ -52,6 +51,8 @@ dependencies {
 }
 
 jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
     from {
         configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
     }
